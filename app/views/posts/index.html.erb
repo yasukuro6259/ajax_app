@@ -6,6 +6,10 @@
   <%= form.text_field :content %> <%# :content はname属性 %>
   <%= form.submit '投稿する' , id: "submit" %>
 <% end %>
+
+<div id="list">
+</div>
+
 <% @posts.each do |post| %>
   <div class="post" data-id=<%= post.id %> data-check=<%= post.checked %>> <%# data-idとdata-checkのカスタムデータ属性(data-情報)を追加%>
     <div class="post-date">

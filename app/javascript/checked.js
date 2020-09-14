@@ -17,6 +17,7 @@ function check() {
           return null;          
         }                        
         const item = XHR.response.post;           // レスポンスされてきたデータ(JSON)にアクセス
+        console.log(item);
         if (item.checked === true) {
           post.setAttribute("data-check", "true");
         } else if (item.checked === false) {

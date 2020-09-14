@@ -5,9 +5,10 @@ class PostsController < ApplicationController
   end
 
   def create
-    Post.create(content: params[:content]) #モデル名.create(カラム名: 値)
-    redirect_to action: :index #redirect_to action: :リダイレクト先となるアクション　
-    #コントローラー等での処理後、アクションに対応するビューファイルを参照せずに、別ページへリダイレクトさせる.
+    post = Post.create(content: params[:content], checked: false) #モデル名.create(カラム名: 値)
+    render json:{ post: post } #postはcreateメソッドで作成されたインスタンス
+    # redirect_to action: :index #redirect_to action: :リダイレクト先となるアクション　
+    # コントローラー等での処理後、アクションに対応するビューファイルを参照せずに、別ページへリダイレクトさせる.
   end
 
   def checked #checkedアクションの定義（「既読」の操作を行った時に実行されるアクション）
@@ -19,7 +20,7 @@ class PostsController < ApplicationController
       post.update(checked: true) #既読にするためにtrueへ変更
     end
     item = Post.find(params[:id]) #変更後のレコードを取得
-    render json: { post: item } # {post: item}はどういう意味？
+    render json: { post: item } # {post: item}は{ インスタンス: 値}
   end
 
 end
